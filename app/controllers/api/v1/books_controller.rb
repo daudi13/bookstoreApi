@@ -1,8 +1,8 @@
 module Api 
-  module v1
-    class booksController < ApplicationController
+  module V1
+    class BooksController < ApplicationController
       def index
-        books = Book.order('created_at DESC')
+        books = Book.order('created_at DESC');
         render json: {status: 'SUCCESS', message:'Loaded books', data:books}, status: :ok
       end
     end
