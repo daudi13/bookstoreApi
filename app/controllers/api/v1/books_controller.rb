@@ -29,7 +29,7 @@ module Api
 
       def update
         book = Book.find(params[:id])
-        if book.update_attributes(book_params)
+        if book.update(book_params)
           render json: {status: 'SUCCESS', message: 'Updated book', data:book}, status: :ok
         else
           render json: {status: 'ERROR', message: 'Book not updated', data:book.errors}, status: :unprocessable_entity
