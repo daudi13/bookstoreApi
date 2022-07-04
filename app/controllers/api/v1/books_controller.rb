@@ -20,11 +20,20 @@ module Api
           render json: {status: 'ERROR', message:'Book not saved', data:book.errors}, status: :unprocessable_entity
         end
       end
-
+    
       def destroy
         book = Book.find(params[:id])
         book.destroy
         render json: {status: 'SUCCESS', message: 'Deleted book', data:book}, status: :ok
+      end
+
+      def update
+        book = Book.find(params[:id])
+        if book.update_attributes(book_params)
+          render json: {status: 'SUCCESS', message: 'Updated book', data:book}, status: :ok
+        else
+          render json: {status: 'ERROR', message: 'Book not updated', data:book.errors}, status: :unprocessable_entity
+        end
       end
 
       private
