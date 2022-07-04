@@ -21,6 +21,12 @@ module Api
         end
       end
 
+      def destroy
+        book = Book.find(params[:id])
+        book.destroy
+        render json: {status: 'SUCCESS', message: 'Deleted book', data:book}, status: :ok
+      end
+
       private
 
       def book_params
